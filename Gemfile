@@ -53,6 +53,9 @@ group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
 end
 gem 'rspec-rails', '~> 4.0.0'
+gem 'factory_bot_rails'
+gem 'faker'
+
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
@@ -78,3 +81,5 @@ group :production do
 end
 
 gem 'devise'
+
+gem 'pry-rails'
