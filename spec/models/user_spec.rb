@@ -1,8 +1,10 @@
 require 'rails_helper'
+
 RSpec.describe User, type: :model do
   before do
     @user = FactoryBot.build(:user)
   end
+
   describe 'ユーザー新規登録' do
     context '新規登録できる時' do
       it 'nicknameとemail、passwordとpassword_confirmationが存在すれば登録できる' do
@@ -25,10 +27,10 @@ RSpec.describe User, type: :model do
           expect(@user.errors.full_messages).to include("Password can't be blank")
         end
         it 'passwordとpassword_confirmationが不一致では登録できない' do
-        @user.password = 'd123456'
-        @user.password_confirmation = 'd1234567'
-        @user.valid?
-        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+          @user.password = 'd123456'
+          @user.password_confirmation = 'd1234567'
+          @user.valid?
+          expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
         end
         it '重複したemailが存在する場合は登録できない' do
           @user.save
@@ -67,7 +69,7 @@ RSpec.describe User, type: :model do
           expect(@user.errors.full_messages).to include('Password is invalid')
         end
         it '全角文字を含むパスワードでは登録できない' do
-          @user.password = "あ11111"
+          @user.password = 'あ11111'
           @user.password_confirmation = 'D11111'
           @user.valid?
           expect(@user.errors.full_messages).to include('Password is invalid')
