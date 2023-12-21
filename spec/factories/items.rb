@@ -8,11 +8,12 @@ FactoryBot.define do
       burden_id                  { Faker::Number.between(from: 2, to: 3) }
       prefecture_id              { Faker::Number.between(from: 2, to: 48) }
       estimated_shopping_date_id { Faker::Number.between(from: 2, to: 4) }
-  
+
       association :user
-  
+
       after(:build) do |item|
         item.image.attach(io: File.open('test/images/test-image.png'), filename: 'test_image.png')
       end
     end
   end
+  
