@@ -12,6 +12,8 @@ class AddressHistory
     validates :telephone
   end
 
+  validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
+
   def save
     history = History.create(
       item_id:,
