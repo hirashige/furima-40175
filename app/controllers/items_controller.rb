@@ -35,10 +35,6 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    unless current_user.id == @item.user_id
-      redirect_to root_path
-      return
-    end
     @item.destroy
     redirect_to root_path
   end
@@ -55,8 +51,6 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index
-    return if current_user.id == @item.user_id
-
-    redirect_to action: :index
+    redirect_to action: :index unless current_user.id == @item.user_id
   end
 end
