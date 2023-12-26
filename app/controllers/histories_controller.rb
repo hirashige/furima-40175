@@ -15,6 +15,7 @@ class HistoriesController < ApplicationController
   end
 
   def history_params
-    params.require(:address_history).permit(:post_code, :prefecture_id, :city, :address,:building_name, :telephone).merge(user_id: current_user.id, item_id: params[:item_id])
+    params.require(:address_history).permit(:post_code, :prefecture_id, :city, :address, :building_name, :telephone)
+          .merge(user_id: current_user.id, item_id: params[:item_id])
   end
 end
