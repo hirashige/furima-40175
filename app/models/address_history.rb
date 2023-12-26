@@ -9,7 +9,7 @@ class AddressHistory
     validates :prefecture_id
     validates :city
     validates :address
-    validates :telephone
+    validates :telephone, format: { with: /\A(0{1}\d{9,10})\z/ }
     validates :token
   end
 
