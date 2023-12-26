@@ -1,6 +1,6 @@
 class AddressHistory
   include ActiveModel::Model
-  attr_accessor :post_code, :prefecture_id, :city, :address, :building_name, :telephone, :user_id, :item_id
+  attr_accessor :post_code, :prefecture_id, :city, :address, :building_name, :telephone, :user_id, :item_id, :token
 
   with_options presence: true do
     validates :user_id
@@ -10,6 +10,7 @@ class AddressHistory
     validates :city
     validates :address
     validates :telephone
+    validates :token
   end
 
   validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
@@ -24,6 +25,7 @@ class AddressHistory
       prefecture_id:,
       city:,
       address:,
+      building_name:,
       telephone:,
       history_id: history.id
     )
