@@ -1,6 +1,6 @@
 class AddressHistory
   include ActiveModel::Model
-  attr_accessor :post_code, :prefecture_id, :city, :address, :building_name, :telephone, :user_id, :item_id
+  attr_accessor :post_code, :prefecture_id, :city, :address, :building_name, :telephone, :user_id, :item_id, :history_id
 
   with_options presence: true do
     validates :user_id
@@ -23,7 +23,7 @@ class AddressHistory
       city,
       address,
       telephone,
-      history_id: history.id
+      history_id
     )
   end
 end
