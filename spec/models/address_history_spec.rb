@@ -50,17 +50,17 @@ RSpec.describe AddressHistory, type: :model do
         expect(@address_history.errors.full_messages).to include('Telephone is invalid')
       end
       it 'telephoneが10桁以下では保存ができなこと' do
-        @address_history.telephone = 000000000
+        @address_history.telephone = '000000000'
         @address_history.valid?
         expect(@address_history.errors.full_messages).to include('Telephone is invalid')
       end
       it 'telephoneが11桁以上では保存ができなこと' do
-        @address_history.telephone = 000000000000
+        @address_history.telephone = '000000000000'
         @address_history.valid?
         expect(@address_history.errors.full_messages).to include('Telephone is invalid')
       end
       it 'telephoneが半角数字でないと保存できないこと' do
-        @address_history.telephone = "あああああああああああ"
+        @address_history.telephone = 'あああああああああああ'
         @address_history.valid?
         expect(@address_history.errors.full_messages).to include('Telephone is invalid')
       end
