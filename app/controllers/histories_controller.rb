@@ -43,6 +43,6 @@ class HistoriesController < ApplicationController
   end
 
   def move_to_index
-    redirect_to items_path if current_user.id == @item.user_id || @item.histories.present?
+    redirect_to items_path if current_user.id == @item.user_id || @item.history.present?
   end
 end
