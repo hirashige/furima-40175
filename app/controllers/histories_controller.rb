@@ -5,7 +5,6 @@ class HistoriesController < ApplicationController
 
   def index
     gon.public_key = ENV['PAYJP_PUBLIC_KEY']
-    @item = Item.find(params[:item_id])
     @address_history = AddressHistory.new
   end
 
@@ -17,7 +16,6 @@ class HistoriesController < ApplicationController
       redirect_to root_path
     else
       gon.public_key = ENV['PAYJP_PUBLIC_KEY']
-      @item = Item.find(params[:item_id])
       render :index, status: :unprocessable_entity
     end
   end
@@ -25,8 +23,9 @@ class HistoriesController < ApplicationController
   private
 
   def history_params
-    params.require(:address_history).permit(:post_code, :prefecture_id, :city, :address, :building_name, :telephone)
-          .merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+    params.require(:address_history).permit(:post_code, :prefecture_id, :city, :address, :building_name, :telephone).merge(
+      user_id: current_user.id, item_id: params[:item_id], token: params[:token]
+    )
   end
 
   def pay_item
@@ -43,8 +42,8 @@ class HistoriesController < ApplicationController
   end
 
   def move_to_index
-    if @item.nil? || current_user.id == @item.user_id || @item.history.present?
-      redirect_to items_path
-    end
+    return unless current_user.id == @item.user_id || !@item.history.nil?
+
+    redirect_to items_path
   end
 end
